@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giuse Vũ Duy Linh</title>
+    <link rel="stylesheet" href="style.css" >
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+
+<body>
+    <div class="profile-container">
+		<div class="profile-header">
+			<img src="Linh.png" alt="Vũ Duy Linh" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 10px; object-fit: cover;">
+			<h2>Giuse</h2>
+			<h2>Vũ Duy Linh</h2>
+			<p>0909099009</p>
+			<p>giuselinhvu@gmail.com</p>
+		</div>
+        <div class="profile-details">
+            <h3> Details:</h3>
+            <ul class="skills">
+                <li>Gx Trung Chánh</li>
+                <li>Giáo Hạt Hook Moon</li>
+				<li>Sa Mạc Phó</li>
+            </ul>
+        </div>
+		<div class="skills">
+			<h2>Sa Mạc Huấn Luyện HT Cấp 1: </h2>
+			<div class="attendance">
+				<h4>Điểm danh:</h4>
+				<div class="checkbox-grid"></div>
+			</div>
+			<h4>Chuyên Cần:</h4>
+			<!-- Kỹ năng 1 -->
+			<div class="skill-container">
+				<div class="skill-bar skill-level" style="width: 100%;">100%</div>
+			</div>
+			<!-- Thêm kỹ năng khác ở đây... -->
+		</div>
+		<div class="biography">
+			<h2>Tiểu Sử & Thành Tích</h2>
+			<p>Giuse Vũ Duy Linh, sinh năm 1990, đã tham gia vào nhiều hoạt động cộng đồng và phát triển bản thân qua nhiều khóa huấn luyện và sự kiện. Đã đạt được nhiều thành tựu đáng kể trong công tác giáo dục và huấn luyện tại các sự kiện cấp giáo phận và quốc gia.</p>
+			<ul class="achievements">				
+				<li>Đạt Giải Nhất Cuộc Thi Kỹ Năng Giáo Dục Năm 2015.</li>
+				<li>Đạt Giải Nhất Cuộc Thi bán đồ ăn cho chó mèo và súc vật năm 2017.</li>
+				<li>Huấn luyện viên chính trong Sa Mạc Huấn Luyện HT Cấp 1 năm 2018.</li>
+				<li>Tham gia tổ chức thành công các sự kiện từ thiện, quyên góp cho cộng đồng nghèo năm 2020.</li>
+			</ul>
+		</div>
+		
+    </div>
+	<script>
+		async function fetchDataFromServer() {
+			try {				
+				let data = await fetch('../data.csv')
+				.then(response => response.text())
+				.then(csvString => {
+					return Papa.parse(csvString, {
+						header: true,
+						skipEmptyLines: true
+					}).data;
+				});
+			
+				let userId = 185;
+
+				let user = data.find(p => p.id == userId); // Tìm người dùng có id trùng với id của người dùng hiện tại
+				console.log(user.diemDanh);
+				let diemDanh = user.diemDanh.split(',');
+				let diemDanhFull = user.diemDanh.split(',');
+
+				const activeCount = diemDanh.filter(value => value === "true").length; // Đếm số lượng giá trị true
+				const chuyencan = (activeCount / 9) * 100;
+
+				const checkboxContainer = document.querySelector(".checkbox-grid");
+				const skillBar = document.querySelector(".skill-bar");
+				
+				// Cập nhật phần trăm cho skill-bar
+				skillBar.style.width = `${chuyencan.toFixed(2)}%`;
+				skillBar.textContent = `${chuyencan.toFixed(2)}%`;			
+			
+				diemDanhFull.forEach((isChecked, index) => {
+					let check = false;
+					if(isChecked=='true'){check =true}
+					const container = document.createElement("div");
+					container.className = "checkbox-container";
+
+					const checkbox = document.createElement("input");
+					checkbox.type = "checkbox";
+					checkbox.id = "checkbox" + index;
+					checkbox.checked = check;
+					checkbox.disabled = true;
+
+					const label = document.createElement("label");
+					label.htmlFor = "checkbox" + index;
+					label.textContent = "Ngày " + (index + 1);
+
+					container.appendChild(checkbox);
+					container.appendChild(label);
+					checkboxContainer.appendChild(container);
+				});		
+
+			} catch (error) {
+				console.error("Lỗi khi lấy dữ liệu từ máy chủ:", error);
+			}
+		}
+
+		window.onload = fetchDataFromServer;
+	</script>
+</body>
+
+</html>

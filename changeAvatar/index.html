@@ -129,7 +129,7 @@ document.getElementById('saveImageButton').addEventListener('click', function() 
     if (!currentImg) return;
 	// Phát hiện loại thiết bị và thiết lập multiplier phù hợp
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const multiplier = isMobile ? 4 : 2; // Tăng multiplier lên 3 cho thiết bị di động
+    const multiplier = isMobile ? 3 : 2; // Tăng multiplier lên 3 cho thiết bị di động
 
     const link = document.createElement('a');
     link.href = canvas.toDataURL({

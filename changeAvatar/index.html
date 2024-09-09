@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thay Avatar Horeb 101</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 <style>
 @media (max-width: 768px) {
   .container {
@@ -129,18 +131,20 @@ document.getElementById('saveImageButton').addEventListener('click', function() 
     if (!currentImg) return;
 	// Phát hiện loại thiết bị và thiết lập multiplier phù hợp
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const multiplier = isMobile ? 3 : 2; // Tăng multiplier lên 3 cho thiết bị di động
+    const multiplier = isMobile ? 3 : 4;
 
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL({
+    const dataURL = canvas.toDataURL({
         format: 'png',
         quality: 1,
         multiplier: multiplier
     });
-    link.download = 'avatar-new.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+	
+    fetch(dataURL)
+        .then(res => res.blob())
+        .then(blob => {
+            saveAs(blob, 'avatar-new.png'); // Dùng FileSaver.js để lưu file
+        })
+        .catch(err => console.error('Error saving image:', err));
 });
 
 initCanvas();

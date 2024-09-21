@@ -52,66 +52,7 @@
         </div>
 	    
     </div>
-	<script>
-        // Thay bằng Folder ID công khai và API Key của bạn
-        const FOLDER_ID = 'YOUR_GOOGLE_DRIVE_FOLDER_ID';
-        const API_KEY = 'YOUR_GOOGLE_DRIVE_API_KEY';
-
-        let images = [];
-        let currentIndex = 0;
-        let intervalId;
-
-        const iframe = document.getElementById('slideshow');
-
-        // Hàm để lấy danh sách hình ảnh từ thư mục Google Drive chia sẻ công khai
-        function fetchImagesFromDrive() {
-            const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents&key=${API_KEY}&fields=files(id,name,mimeType)&supportsAllDrives=true`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Lọc chỉ lấy các file là hình ảnh (jpg, png)
-                    images = data.files
-                        .filter(file => file.mimeType.startsWith('image/'))
-                        .map(file => `https://drive.google.com/uc?export=view&id=${file.id}`);
-                    
-                    if (images.length > 0) {
-                        // Hiển thị hình ảnh đầu tiên
-                        showImage(currentIndex);
-                    } else {
-                        alert("Không tìm thấy hình ảnh trong thư mục.");
-                    }
-                })
-                .catch(err => {
-                    console.error('Error fetching images:', err);
-                });
-        }
-
-        function showImage(index) {
-            iframe.src = images[index];
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        }
-
-        function previousImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            showImage(currentIndex);
-        }
-
-        function playSlideshow() {
-            intervalId = setInterval(nextImage, 2000); // Tự động chuyển ảnh sau 2 giây
-        }
-
-        function pauseSlideshow() {
-            clearInterval(intervalId);
-        }
-
-        // Gọi hàm lấy danh sách hình ảnh khi trang được tải
-        fetchImagesFromDrive();
-    </script><script>
+<script>
         // Thay bằng Folder ID công khai và API Key của bạn
         const FOLDER_ID = '1A04b1UYYuE37cMCKAC6uuFwG2nm8T8A2';
         const API_KEY = 'AIzaSyBvJic-X8DdTAy1_arZTL_0LH2lZ0iKcGU';
@@ -135,8 +76,9 @@
                         .map(file => `https://drive.google.com/uc?export=view&id=${file.id}`);
                     
                     if (images.length > 0) {
-                        // Hiển thị hình ảnh đầu tiên
+                        // Hiển thị hình ảnh đầu tiên và tự động play
                         showImage(currentIndex);
+                        playSlideshow();
                     } else {
                         alert("Không tìm thấy hình ảnh trong thư mục.");
                     }
@@ -168,68 +110,11 @@
             clearInterval(intervalId);
         }
 
-        // Gọi hàm lấy danh sách hình ảnh khi trang được tải
-        fetchImagesFromDrive();
-    </script><script>
-        // Thay bằng Folder ID công khai và API Key của bạn
-        const FOLDER_ID = '1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n';
-        const API_KEY = 'AIzaSyBvJic-X8DdTAy1_arZTL_0LH2lZ0iKcGU';
-
-        let images = [];
-        let currentIndex = 0;
-        let intervalId;
-
-        const iframe = document.getElementById('slideshow');
-
-        // Hàm để lấy danh sách hình ảnh từ thư mục Google Drive chia sẻ công khai
-        function fetchImagesFromDrive() {
-            const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents&key=${API_KEY}&fields=files(id,name,mimeType)&supportsAllDrives=true`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // Lọc chỉ lấy các file là hình ảnh (jpg, png)
-                    images = data.files
-                        .filter(file => file.mimeType.startsWith('image/'))
-                        .map(file => `https://drive.google.com/uc?export=view&id=${file.id}`);
-                    
-                    if (images.length > 0) {
-                        // Hiển thị hình ảnh đầu tiên
-                        showImage(currentIndex);
-                    } else {
-                        alert("Không tìm thấy hình ảnh trong thư mục.");
-                    }
-                })
-                .catch(err => {
-                    console.error('Error fetching images:', err);
-                });
-        }
-
-        function showImage(index) {
-            iframe.src = images[index];
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        }
-
-        function previousImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            showImage(currentIndex);
-        }
-
-        function playSlideshow() {
-            intervalId = setInterval(nextImage, 2000); // Tự động chuyển ảnh sau 2 giây
-        }
-
-        function pauseSlideshow() {
-            clearInterval(intervalId);
-        }
-
-        // Gọi hàm lấy danh sách hình ảnh khi trang được tải
+        // Gọi hàm lấy danh sách hình ảnh và auto-play khi trang được tải
         fetchImagesFromDrive();
     </script>
+
+   
 </body>
 
 </html>

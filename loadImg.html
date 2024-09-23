@@ -41,10 +41,41 @@
         }
 
         .controls button {
-            padding: 10px 20px;
-            font-size: 18px;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
             margin: 5px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4caf50;
+            color: #4caf50;
+            transition: all 0.2s ease; /* Thêm hiệu ứng chuyển động */
+        }
+
+        .controls button:active {
+            box-shadow: none;
+            transform: translateY(3px); /* Tạo hiệu ứng nút nhấn xuống */
+        }
+
+        .controls button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .mui-btn--contained {
+            background-color: white;
+            color: #4caf50;
+            border: 2px solid #4caf50;
+        }
+
+        .mui-btn--contained:hover {
+            background-color: #4caf50;
+            color: white;
         }
     </style>
 </head>
@@ -55,34 +86,34 @@
         <button class="mui-btn mui-btn--raised" onclick="loadImagesFromFolder('1AiExWXhf79Jbrt0qIF6_Nj0DNsrxMfys')">Tiền Sa Mạc</button>
         <button class="mui-btn mui-btn--raised" onclick="loadImagesFromFolder('1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n')">Thứ 6 - Ngày Cầu Nguyện</button>
     </div>
-
     <div class="image-container">
         <a href="#" id="imageLink" target="_blank">
-            <img id="currentImage" src="" alt="Google Drive Image">
+            <img id="currentImage" src="" alt="Horeb 101 Image">
         </a>
     </div>
 
     <div class="controls">
         <button class="mui-btn mui-btn--outlined" id="prevBtn" onclick="prevImage()" disabled>
-            <i class="material-icons">arrow_back</i> Previous
+            <i class="material-icons">arrow_back</i>
+        </button>
+		<button class="mui-btn mui-btn--contained" id="playBtn" onclick="startSlideshow()" disabled>
+            <i class="material-icons">play_arrow</i>
         </button>
         <button class="mui-btn mui-btn--outlined" id="nextBtn" onclick="nextImage()" disabled>
-            <i class="material-icons">arrow_forward</i> Next
-        </button>
-        <button class="mui-btn mui-btn--contained" id="playBtn" onclick="startSlideshow()" disabled>
-            <i class="material-icons">play_arrow</i> Play
-        </button>
-        <button class="mui-btn mui-btn--contained" id="stopBtn" onclick="stopSlideshow()" disabled>
-            <i class="material-icons">stop</i> Stop
-        </button>
+            <i class="material-icons">arrow_forward</i>
+        </button>        
     </div>
 
     <script>
         const API_KEY = 'AIzaSyBvJic-X8DdTAy1_arZTL_0LH2lZ0iKcGU'; // Thay thế bằng API Key của bạn
         let images = [];
         let currentIndex = 0;
-        let slideshowInterval;
+        let slideshowInterval = null;
 
+		document.addEventListener("DOMContentLoaded", function () {
+            loadImagesFromFolder('1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n');
+        });
+		
         async function loadImagesFromFolder(folderId) {
             const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${API_KEY}&fields=files(id,name,mimeType)&pageSize=1000`;
 
@@ -114,8 +145,6 @@
         function displayImage() {
             const imageElement = document.getElementById('currentImage');
             const imageLinkElement = document.getElementById('imageLink');
-            
-            // Hiển thị ảnh thumbnail và đặt liên kết đến hình ảnh đầy đủ
             imageElement.src = images[currentIndex].thumbnail;
             imageLinkElement.href = images[currentIndex].fullImage;
         }
@@ -140,10 +169,12 @@
             document.getElementById('prevBtn').disabled = currentIndex === 0;
             document.getElementById('nextBtn').disabled = currentIndex === images.length - 1;
             document.getElementById('playBtn').disabled = images.length <= 1;
-            document.getElementById('stopBtn').disabled = true;
         }
 
         function startSlideshow() {
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+            }
             slideshowInterval = setInterval(() => {
                 if (currentIndex < images.length - 1) {
                     nextImage();
@@ -151,13 +182,7 @@
                     currentIndex = 0;
                     displayImage();
                 }
-            }, 3000); // 3 giây đổi ảnh
-            document.getElementById('stopBtn').disabled = false;
-        }
-
-        function stopSlideshow() {
-            clearInterval(slideshowInterval);
-            document.getElementById('stopBtn').disabled = true;
+            }, 3000);
         }
     </script>
 </body>

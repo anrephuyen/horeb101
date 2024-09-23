@@ -189,6 +189,10 @@
             }
             slides[slideIndex - 1].style.display = 'block';
         }
+        document.addEventListener("DOMContentLoaded", function() {
+            const defaultFolderId = '1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n'; // Folder ID mặc định
+            loadImagesFromGoogleDrive(defaultFolderId); // Tải hình ảnh từ folder mặc định
+        });
     </script>
 
 </body>

@@ -93,9 +93,11 @@
 
     <!-- Folder Selection -->
     <div class="folder-list">
-        <h3>Lựa chọn hình bạn muốn xem hoặc <a href="https://drive.google.com/drive/folders/1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n" target="_blank" rel="noreferrer">Bấm vào đây </a> để mở trong Google Drive:</h3>
+        <h3>Lựa chọn hình bạn muốn xem hoặc <a href="https://drive.google.com/drive/folders/1CB24NomG1r3GWGC650KyniKVV_fPjVKo" target="_blank" rel="noreferrer">Bấm vào đây </a> để mở chất lượng cao trong Google Drive:</h3>
         <button onclick="loadImagesFromGoogleDrive('1AiExWXhf79Jbrt0qIF6_Nj0DNsrxMfys')">Tiền Sa Mạc</button>
         <button onclick="loadImagesFromGoogleDrive('1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n')">Thứ 6 - Ngày Cầu Nguyện</button>
+        <button class="mui-btn mui-btn--raised" onclick="loadImagesFromFolder('1CB24NomG1r3GWGC650KyniKVV_fPjVKo')">Thứ 7 - Ngày Thánh Thể</button>
+        <button class="mui-btn mui-btn--raised" onclick="loadImagesFromFolder('1YkQt1xCsWSUNJt0WkeZYKvJkdX_5YqR0')">Lửa Thiêng Thánh Thể</button>
         <!-- Add more folders as needed -->
     </div>
 
@@ -190,7 +192,7 @@
             slides[slideIndex - 1].style.display = 'block';
         }
         document.addEventListener("DOMContentLoaded", function() {
-            const defaultFolderId = '1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n'; // Folder ID mặc định
+            const defaultFolderId = '1CB24NomG1r3GWGC650KyniKVV_fPjVKo'; // Folder ID mặc định
             loadImagesFromGoogleDrive(defaultFolderId); // Tải hình ảnh từ folder mặc định
         });
     </script>

@@ -93,11 +93,13 @@
 
     <!-- Folder Selection -->
     <div class="folder-list">
-        <h3>Lựa chọn hình bạn muốn xem hoặc <a href="https://drive.google.com/drive/folders/1CB24NomG1r3GWGC650KyniKVV_fPjVKo" target="_blank" rel="noreferrer">Bấm vào đây </a> để mở trong Google Drive -ngày Thánh Thể</h3>
+        <h3><a href="https://drive.google.com/drive/folders/18gQTXQIOVY1QrsKOZeQOBdAuqrWDR2rI" target="_blank" rel="noreferrer">Link Full Sa Mạc</a></h3>
+        <h3>Lựa chọn hình bạn muốn xem hoặc <a href="https://drive.google.com/drive/folders/1xQCE4TYunXf-EfRkiMIsLzepKWkOgSGF" target="_blank" rel="noreferrer">Bấm vào đây </a> để mở trong Google Drive - Ngày Hy Sin - Làm Tông Đồ</h3>
         <button onclick="loadImagesFromGoogleDrive('1AiExWXhf79Jbrt0qIF6_Nj0DNsrxMfys')">Tiền Sa Mạc</button>
         <button onclick="loadImagesFromGoogleDrive('1gDbKgwPeIWPQDMVOKfoZNjeK6pDO567n')">Thứ 6 - Ngày Cầu Nguyện</button>
         <button class="mui-btn mui-btn--raised" onclick="loadImagesFromFolder('1CB24NomG1r3GWGC650KyniKVV_fPjVKo')">Thứ 7 - Ngày Thánh Thể</button>
         <button class="mui-btn mui-btn--raised" onclick="loadImagesFromFolder('1YkQt1xCsWSUNJt0WkeZYKvJkdX_5YqR0')">Lửa Thiêng Thánh Thể</button>
+        <button class="mui-btn mui-btn--raised" onclick="loadImagesFromFolder('1xQCE4TYunXf-EfRkiMIsLzepKWkOgSGF')">Chúa Nhật - Ngày Làm Tông Đồ</button>
         <!-- Add more folders as needed -->
     </div>
 
@@ -110,7 +112,7 @@
     </div>
 
     <script>
-        const API_KEY = 'AIzaSyBvJic-X8DdTAy1_arZTL_0LH2lZ0iKcGU'; // Thay bằng API key của bạn
+        const API_KEY = 'AIzaSyBvJic-X8DdTAy1_arZTL_0LH2lZ0iKcGU';
         let images = [];
         let slideIndex = 1;
 
@@ -192,7 +194,7 @@
             slides[slideIndex - 1].style.display = 'block';
         }
         document.addEventListener("DOMContentLoaded", function() {
-            const defaultFolderId = '1CB24NomG1r3GWGC650KyniKVV_fPjVKo'; // Folder ID mặc định
+            const defaultFolderId = '1xQCE4TYunXf-EfRkiMIsLzepKWkOgSGF'; // Folder ID mặc định
             loadImagesFromGoogleDrive(defaultFolderId); // Tải hình ảnh từ folder mặc định
         });
     </script>

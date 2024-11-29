@@ -44,55 +44,7 @@ body {
 }
 
 .input-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.input-container span {
-    width: 30%;
-    font-size: 1rem;
-    text-align: left;
-}
-
-.input-container input {
-    width: 65%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #e9ecef;
-    font-size: 1rem;
-}
-
-.progress-container {
-    width: 100%;
-    background-color: #e0e0e0;
-    height: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 10px;
-    position: relative;
-}
-
-.progress-bar {
-    height: 100%;
-    background-color: green;
-    width: 0%;
-    transition: width 0.5s ease;
-}
-
-.progress-text {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
+	margin-bottom: 10px;
 }
 
 .biography {
@@ -147,4 +99,29 @@ body {
     border-radius: 4px;
     font-weight: bold;
     padding-right: 10px;
+}
+
+.chuc-mung,
+.text-tuyen-hua,
+.date-tuyen-hua {
+    text-align: center;
+    font-weight: bold;
+    animation: blink 1s infinite alternate;
+}
+.text-tuyen-hua {
+    animation-delay: 0.2s; /* Trễ so với .chuc-mung */
+}
+.date-tuyen-hua {
+    animation-delay: 0.4s; /* Trễ hơn nữa */
+}
+@keyframes blink {
+    0% {
+        color: red;
+    }
+    50% {
+        color: yellow;
+    }
+    100% {
+        color: green;
+    }
 }
